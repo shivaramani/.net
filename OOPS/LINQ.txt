@@ -1,0 +1,73 @@
+LINQ
+
+// select from numbers
+
+int[] numbers = {1,2,3};
+
+// select * from numbers where num < 2
+
+var lowNums = from num in numbers where num < 2 select num;
+
+foreach(var x in lowNums)
+{
+   Console.WriteLine(x);
+}
+
+
+// select from list
+
+List<Product> products = GetProducts(); // this gives a list of products
+
+var prodVA = from prod in products where prod.City == "VA" select prod;
+
+// select from the linq data based on necessity
+
+string []words = {'Cat', 'mOuse'};
+
+var upperLowerWords = from w in words select new { Upper = w.ToUpper(), Lower = w.toLower() };
+
+foreach(var ul in upperLowerWords)
+{
+   Console.WriteLine( ul.Upper+ " " + ul.Lower);
+}
+
+
+// compound Select
+
+ List<Customer> customers = GetCustomerList(); 
+  
+    var orders = 
+        from c in customers 
+        from o in c.Orders 
+        where o.Total < 500.00M 
+        select new { c.CustomerID, o.OrderID, o.Total }; 
+
+    foreach(var orders in Orders)
+    {
+        Console.Write(Customer.ID + orders.ID + orders.Total);
+    }
+
+
+// using Select & SelectMany Indexed
+
+ int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 }; 
+  
+    var numsInPlace = numbers.Select
+                      ((num, index) => new { Num = num, InPlace = (num == index) }); 
+  
+    Console.WriteLine("Number: In-place?"); 
+    foreach (var n in numsInPlace) 
+    { 
+        Console.WriteLine("{0}: {1}", n.Num, n.InPlace); 
+    } 
+
+
+List<Customer> customers = GetCustomerList(); 
+  
+    var customerOrders = 
+        customers.SelectMany( 
+            (cust, custIndex) => 
+            cust.Orders.Select(o => "Customer #" + (custIndex + 1) + 
+                                    " has an order with OrderID " + o.OrderID)); 
+  
+    ObjectDumper.Write(customerOrders);

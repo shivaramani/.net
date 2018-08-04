@@ -1,0 +1,16 @@
+1) oops
+4) generics
+5) delegates/events
+6) remoting
+7) wcsf
+8) linq / lambda expression
+
+
+2) wcf
+3) jquery
+8) asp.net questions
+9) patterns
+
+10) Enterprise application blocks
+11) xml - xslt/dom
+12) image streaming via xml/files

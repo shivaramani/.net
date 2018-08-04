@@ -1,0 +1,57 @@
+Server:
+
+1) use
+using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting.Channels.Http;
+
+2) Register a channel with port
+  HttpServerChannel hts = new HttpServerchannel(8228);
+  ChannelServices.RegisterChannel(hts);
+
+3) register well known service type with the  object type
+   RemotingConfiguration.RegisterWellKnownServiceType(typeof(CustomerLoader),
+              "CustomerLoader", WellKnownObjectMode.Singleton);
+
+Client:
+
+1) register the channel (similar to server)
+   ChannelServices.RegisterChannel( new HttpClientChannel());
+
+2) get the object using Activator for the customm object
+   CustomerLoader custl = (CustomerLoader)Activator.GetObject(typeof(CustomerLoader
+                ) , "http://localhost:8228/CustomerLoader");
+
+3) perform the operation with the response
+   if ( custl == null )
+      {
+        Console.WriteLine("HTTP SERVER OFFLINE ...PLEASE TRY LATER");
+        return ;
+      }
+
+
+Custom loader or the object that will be used 
+
+1) create the class & inherit from MarshallByRefObject
+2) perform any operation
+
+using System;
+using System.Text;
+using System.IO;
+
+namespace CustomerInfo
+{
+    public class CustomerLoader : System.MarshalByRefObject
+    {
+        public CustomerLoader()
+        {
+            // Console.WriteLine("New Customer Instance Created");
+        }
+
+        public string RetValue()
+        {
+            return "Message From CustomerLoader";
+        }
+
+    }
+}
+

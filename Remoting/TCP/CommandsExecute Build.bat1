@@ -1,0 +1,6 @@
+csc /t:library remoteobject.cs
+csc /r:remoteobject.dll Server.cs
+csc /r:remoteobject.dll Client.cs
+server
+client
+
