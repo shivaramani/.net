@@ -379,4 +379,4 @@ public interface IMyService
 ## References
  - https://docs.microsoft.com/en-us/dotnet/framework/wcf/whats-wcf
 
-https://www.c-sharpcorner.com/UploadFile/8ef97c/wcf-interview-questions-and-answers/
+ - https://www.c-sharpcorner.com/UploadFile/8ef97c/wcf-interview-questions-and-answers/
